@@ -31,6 +31,8 @@ class SequencedCollectionTest {
         Deque<String> dequeStrings = new ArrayDeque<>();
         dequeStrings.add("first");
         String firstElement = dequeStrings.iterator().next(); //Before java 21
+
+//        dequeStrings.getLast()
     }
 
     @Test
