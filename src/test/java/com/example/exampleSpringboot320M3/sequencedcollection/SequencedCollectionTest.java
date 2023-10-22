@@ -35,11 +35,6 @@ class SequencedCollectionTest {
 //        dequeStrings.getLast()
     }
 
-    @Test
-    void compare_getfirstElement_between_list_and_deque(){
-        List<String> strings = new ArrayList<>();
-        String firstElem = strings.get(0); //Before java 21
-    }
 
     @Test
     void sortedset_getfirstElement(){
