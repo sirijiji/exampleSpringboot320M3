@@ -10,10 +10,10 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '21'
-//	toolchain {
-//		languageVersion = JavaLanguageVersion.of(21)
-//		vendor.set(JvmVendorSpec.ADOPTIUM)
-//	}
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+		vendor.set(JvmVendorSpec.GRAAL_VM)
+	}
 }
 
 configurations {
@@ -44,4 +44,12 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+bootBuildImage {
+	imageName = "eu.gcr.io/abo/graalvm_branch"
+	builder = "paketobuildpacks/builder-jammy-full"
+	if (System.getenv("IMAGE_TAGS")) {
+		tags = (System.getenv("IMAGE_TAGS").split(",") as List<String>).collect { "${imageName.get()}:$it" }
+	}
 }
