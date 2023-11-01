@@ -10,10 +10,10 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '21'
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-		vendor.set(JvmVendorSpec.GRAAL_VM)
-	}
+//	toolchain {
+//		languageVersion = JavaLanguageVersion.of(21)
+//		vendor.set(JvmVendorSpec.GRAAL_VM)
+//	}
 }
 
 configurations {
