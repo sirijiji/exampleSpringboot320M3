@@ -11,7 +11,7 @@ java {
 	sourceCompatibility = '21'
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
-		vendor.set(JvmVendorSpec.GRAAL_VM)
+		vendor.set(JvmVendorSpec.ADOPTIUM)
 	}
 }
 
