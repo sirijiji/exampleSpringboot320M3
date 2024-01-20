@@ -41,12 +41,22 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.projectlombok:lombok:1.18.28'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+	implementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 
 test {
+	maxParallelForks = Runtime.runtime.availableProcessors()
 	finalizedBy jacocoTestReport // report is always generated after tests run
 }
+//tasks.withType(Test) {
+//	maxParallelForks = Runtime.runtime.availableProcessors()
+//}
 jacocoTestReport {
 	dependsOn test // tests are required to run before generating the report
 }

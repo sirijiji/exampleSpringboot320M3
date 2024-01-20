@@ -1,9 +1,13 @@
 package com.example.exampleSpringboot320M3.sequencedcollection;
 
+import com.example.exampleSpringboot320M3.annotation.ParallelizedTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+
+@Slf4j
+@ParallelizedTest
 class SequencedCollectionTest {
 
     @Test
@@ -15,13 +19,12 @@ class SequencedCollectionTest {
         String firstElem = lists.get(0); //Before java 21
         String firstElemWithjdk21 = lists.getFirst(); //After java 21
         String last = lists.getLast(); // => thirdElem
-        System.out.println(last);
+        log.info(last);
         lists.addFirst("rootElem"); // => rootElem
-        System.out.println(lists.getFirst());
+        log.info(lists.getFirst());
         List<String> reversed = lists.reversed(); // => [thirdElem, secondElem, firstElem, rootElem]
-        System.out.println(reversed);
 
-        System.out.println(firstElemWithjdk21); // => firstElem
+        log.info(firstElemWithjdk21); // => firstElem
 
 
     }
@@ -44,10 +47,10 @@ class SequencedCollectionTest {
         sortedSet.add("orange");
 
         String next = sortedSet.iterator().next(); //before java 21
-        System.out.println(next); // => apple
+        log.info(next); // => apple
 
         String first = sortedSet.getFirst(); // after java 21
-        System.out.println(first); // => apple
+        log.info(first); // => apple
     }
 
 

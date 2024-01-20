@@ -1,11 +1,17 @@
 package com.example.exampleSpringboot320M3.patternmatching;
 
+import com.example.exampleSpringboot320M3.annotation.ParallelizedTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@ParallelizedTest
 class PatternMatchingSwitchTest {
 
     interface Fruit{}
@@ -63,9 +69,9 @@ class PatternMatchingSwitchTest {
 
         for (Fruit fruit : fruits) {
             switch (fruit) {
-                case Apple apple -> System.out.println(apple);// => apple
-                case Orange orange -> System.out.println(orange);// => orange
-                case Mango mango -> System.out.println(mango);// => mango
+                case Apple apple -> log.info(apple.toString());// => apple
+                case Orange orange -> log.info(orange.toString());// => orange
+                case Mango mango -> log.info(mango.toString());// => mango
                 default -> throw new IllegalStateException("Unexpected value: " + fruit);
             }
         }
@@ -77,7 +83,7 @@ class PatternMatchingSwitchTest {
         Fruit apple = new Apple();
 
         if(apple instanceof Apple apple1){
-            System.out.println(apple1);
+            log.info(apple1.toString());
         }
 
     }
@@ -85,21 +91,21 @@ class PatternMatchingSwitchTest {
     // Prior to Java 21
     static void testFooBarOld(String s) {
         if (s == null) {
-            System.out.println("Oops!");
+            log.info("Oops!");
             return;
         }
         switch (s) {
-            case "Foo", "Bar" -> System.out.println("Great");
-            default           -> System.out.println("Ok");
+            case "Foo", "Bar" -> log.info("Great");
+            default           -> log.info("Ok");
         }
     }
 
     // As of Java 21
     static void testFooBarNew(String s) {
         switch (s) {
-            case null         -> System.out.println("Oops");
-            case "Foo", "Bar" -> System.out.println("Great");
-            default           -> System.out.println("Ok");
+            case null         -> log.info("Oops");
+            case "Foo", "Bar" -> log.info("Great");
+            default           -> log.info("Ok");
         }
     }
 
@@ -109,11 +115,11 @@ class PatternMatchingSwitchTest {
             case null -> { }
             case String s -> {
                 if (s.equalsIgnoreCase("YES"))
-                    System.out.println("You got it");
+                    log.info("You got it");
                 else if (s.equalsIgnoreCase("NO"))
-                    System.out.println("Shame");
+                    log.info("Shame");
                 else
-                    System.out.println("Sorry?");
+                    log.info("Sorry?");
             }
         }
     }
@@ -123,14 +129,14 @@ class PatternMatchingSwitchTest {
             case null -> { }
             case String s
                     when s.equalsIgnoreCase("YES") -> {
-                System.out.println("You got it");
+                log.info("You got it");
             }
             case String s
                     when s.equalsIgnoreCase("NO") -> {
-                System.out.println("Shame");
+                log.info("Shame");
             }
             case String s -> {
-                System.out.println("Sorry?");
+                log.info("Sorry?");
             }
         }
     }
@@ -157,19 +163,19 @@ class PatternMatchingSwitchTest {
     static void exhaustiveSwitchWithBetterEnumSupport(CardClassification c) {
         switch (c) {
             case Suit.CLUBS -> {
-                System.out.println("It's clubs");
+                log.info("It's clubs");
             }
             case Suit.DIAMONDS -> {
-                System.out.println("It's diamonds");
+                log.info("It's diamonds");
             }
             case Suit.HEARTS -> {
-                System.out.println("It's hearts");
+                log.info("It's hearts");
             }
             case Suit.SPADES -> {
-                System.out.println("It's spades");
+                log.info("It's spades");
             }
             case Tarot t -> {
-                System.out.println("It's a tarot");
+                log.info("It's a tarot");
             }
         }
     }
