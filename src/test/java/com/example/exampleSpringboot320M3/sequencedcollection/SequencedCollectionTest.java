@@ -12,6 +12,7 @@ class SequencedCollectionTest {
 
     @Test
     void getfirstElement_list(){
+        log.info("getfirstElement_list");
         List<String> lists = new ArrayList<>();
         lists.add("firstElem");
         lists.add("secondElem");
@@ -31,6 +32,7 @@ class SequencedCollectionTest {
 
     @Test
     void getfirstElement_deque(){
+        log.info("getfirstElement_deque");
         Deque<String> dequeStrings = new ArrayDeque<>();
         dequeStrings.add("first");
         String firstElement = dequeStrings.iterator().next(); //Before java 21
@@ -41,6 +43,7 @@ class SequencedCollectionTest {
 
     @Test
     void sortedset_getfirstElement(){
+        log.info("sortedset_getfirstElement");
         SortedSet<String> sortedSet = new TreeSet<>();
         sortedSet.add("apple");
         sortedSet.add("mango");
