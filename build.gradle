@@ -25,9 +25,11 @@ configurations {
 repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://packages.confluent.io/maven/' }
 }
 
 dependencies {
+	implementation 'io.confluent:kafka-schema-serializer:7.6.0'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -40,7 +42,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.projectlombok:lombok:1.18.28'
+	testImplementation 'org.projectlombok:lombok:1.18.32'
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 	implementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
@@ -62,4 +64,7 @@ jacocoTestReport {
 }
 tasks.named('test') {
 	useJUnitPlatform()
+}
+bootJar{
+
 }
