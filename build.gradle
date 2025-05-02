@@ -12,7 +12,7 @@ java {
 	sourceCompatibility = '24'
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(24)
-		vendor.set(JvmVendorSpec.GRAAL_VM)
+		vendor = JvmVendorSpec.GRAAL_VM
 	}
 }
 
