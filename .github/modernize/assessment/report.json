@@ -1,0 +1,53 @@
+{
+  "projectPath": "L:\\work\\workspace\\exampleSpringboot320M3",
+  "detectedLanguages": ["java"],
+  "buildFiles": ["build.gradle", "settings.gradle", "gradlew", "gradlew.bat"],
+  "java": {
+    "declaredSourceCompatibility": "25",
+    "toolchainLanguageVersion": 25
+  },
+  "springBoot": {
+    "pluginVersion": "4.0.4",
+    "usedRepositories": ["https://repo.spring.io/milestone", "https://repo.spring.io/milestone (pluginManagement)"]
+  },
+  "repositories": ["mavenCentral", "https://repo.spring.io/milestone", "https://packages.confluent.io/maven/"],
+  "dependencies": [
+    "org.springframework.boot:spring-boot-starter",
+    "org.springframework.boot:spring-boot-starter-actuator",
+    "org.springframework.boot:spring-boot-starter-data-jpa",
+    "org.springframework.boot:spring-boot-starter-web",
+    "org.springframework.boot:spring-boot-starter-thymeleaf",
+    "org.springframework.boot:spring-boot-configuration-processor (annotationProcessor)",
+    "org.projectlombok:lombok (compileOnly)",
+    "org.springframework.boot:spring-boot-devtools (developmentOnly)",
+    "com.h2database:h2 (runtimeOnly)",
+    "org.postgresql:postgresql (runtimeOnly)",
+    "org.springframework.boot:spring-boot-starter-test",
+    "org.projectlombok:lombok (test)",
+    "org.junit.jupiter:junit-jupiter"
+  ],
+  "observations": {
+    "usesSpringBoot4Milestone": true,
+    "usesUnstableRepo": true,
+    "explicitJava25": true,
+    "graalvmNativeSupportMentioned": true
+  },
+  "topMigrationOpportunities": [
+    "Evaluate Java runtime: consider moving to a supported LTS Java (e.g., 21 or 17) for Azure compatibility and wider vendor support.",
+    "Stabilize Spring Boot usage: replace milestone artifacts with a GA Spring Boot release (or lock proven 4.x GA) and remove the milestone repository from production builds.",
+    "Prepare cloud-managed databases: migrate runtimePostgres to Azure Database for PostgreSQL or Azure Database for PostgreSQL Flexible Server and externalize datasource configuration to use managed credentials/Key Vault.",
+    "Containerize and CI/CD: add Docker/OCI image build and GitHub Actions pipeline to build/publish images and run smoke tests; consider Azure Container Registry + Azure App Service / Container Apps.",
+    "Dependency security audit: run dependency scanning (OWASP Dependency-Check, Snyk, or GitHub Dependabot) to identify CVEs and upgrade vulnerable transitive dependencies."]
+  ,
+  "keyBlockersWarnings": [
+    "Tooling: AppCAT is not installed on the environment (AppCAT run failed). This prevented automated MCP assessment. Install AppCAT to run the official assessment tool.",
+    "Bleeding-edge versions: Java 25 and Spring Boot milestone artifacts may not be supported on all Azure services or by trusted buildpacks; expect compatibility and supportability issues.",
+    "Missing explicit dependency versions: many dependencies are declared without versions (relying on Spring BOM). Run a dependency:resolve and CVE scan before production migration."
+  ],
+  "mcpToolStatus": {
+    "appcatRun": "failed",
+    "errorMessage": "AppCAT run failed: spawn C:\\Users\\sirij\\.appcat\\appcat ENOENT"
+  },
+  "generatedBy": "assistant",
+  "timestamp": "2026-05-19T23:28:00Z"
+}

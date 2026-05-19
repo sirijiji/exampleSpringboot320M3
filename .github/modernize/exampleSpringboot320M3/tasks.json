@@ -1,0 +1,178 @@
+﻿{
+  "tasks": [
+    {
+      "id": "task-01",
+      "title": "Install & run AppCAT pre-check",
+      "type": "tooling",
+      "skill": "builtin:run-appcat",
+      "target": {},
+      "estimatedDays": 1,
+      "successCriteria": "AppCAT report produced and saved to .github/modernize/assessment/",
+      "status": "pending",
+      "dependsOn": []
+    },
+    {
+      "id": "task-02",
+      "title": "Dependency & CVE scan",
+      "type": "security",
+      "skill": "builtin:dependency-scan",
+      "target": {
+        "tools": ["OWASP-Dependency-Check", "Snyk", "GitHub-Dependabot"]
+      },
+      "estimatedDays": 2,
+      "successCriteria": "CVE report produced with prioritized remediation list",
+      "status": "pending",
+      "dependsOn": ["task-01"]
+    },
+    {
+      "id": "task-03",
+      "title": "Decide and lock target platform (Java & Spring Boot)",
+      "type": "planning",
+      "skill": "builtin:decision",
+      "target": {
+        "java_version_options": ["21", "17"],
+        "spring_boot_target": "4.x (GA) recommended"
+      },
+      "estimatedDays": 0.5,
+      "successCriteria": "Target versions documented",
+      "status": "pending",
+      "dependsOn": ["task-02"]
+    },
+    {
+      "id": "task-04",
+      "title": "Upgrade Spring Boot to GA / Remove milestone repos",
+      "type": "upgrade",
+      "skill": "builtin:spring-boot-upgrade",
+      "target": {
+        "spring_boot_version": "4.x (GA)",
+        "remove_repos": ["https://repo.spring.io/milestone"]
+      },
+      "estimatedDays": 1,
+      "successCriteria": "Build uses GA BOM and resolves from stable repositories",
+      "status": "pending",
+      "dependsOn": ["task-03"]
+    },
+    {
+      "id": "task-05",
+      "title": "Upgrade Java toolchain to LTS (21) and validate",
+      "type": "upgrade",
+      "skill": "builtin:java-version-upgrade",
+      "target": {
+        "java_version": "21"
+      },
+      "estimatedDays": 3,
+      "successCriteria": "Project builds and tests under Java 21",
+      "status": "pending",
+      "dependsOn": ["task-03", "task-04"]
+    },
+    {
+      "id": "task-06",
+      "title": "Pin & remediate vulnerable dependencies",
+      "type": "security",
+      "skill": "builtin:dependency-upgrade",
+      "target": {},
+      "estimatedDays": 3,
+      "successCriteria": "No outstanding critical CVEs; tests pass",
+      "status": "pending",
+      "dependsOn": ["task-02", "task-04", "task-05"]
+    },
+    {
+      "id": "task-07",
+      "title": "Externalize configuration & integrate Key Vault",
+      "type": "infrastructure",
+      "skill": "builtin:keyvault-integration",
+      "target": {
+        "secret_store": "Azure Key Vault",
+        "datasource": "externalized"
+      },
+      "estimatedDays": 2,
+      "successCriteria": "Secrets read from Key Vault in staging",
+      "status": "pending",
+      "dependsOn": ["task-05", "task-06"]
+    },
+    {
+      "id": "task-08",
+      "title": "Database migration plan (Postgres → Azure DB for PostgreSQL)",
+      "type": "data-migration",
+      "skill": "builtin:db-migration-plan",
+      "target": {
+        "from": "self-hosted Postgres",
+        "to": "Azure Database for PostgreSQL (Flexible Server or Single Server)"
+      },
+      "estimatedDays": 4,
+      "successCriteria": "Migration scripts & dry-run validated in staging",
+      "status": "pending",
+      "dependsOn": ["task-07"]
+    },
+    {
+      "id": "task-09",
+      "title": "Containerize application (Dockerfile)",
+      "type": "containerization",
+      "skill": "builtin:containerize",
+      "target": {
+        "dockerfile": "multi-stage, non-root, distroless/slim runtime"
+      },
+      "estimatedDays": 2,
+      "successCriteria": "OCI image builds reproducibly and runs locally",
+      "status": "pending",
+      "dependsOn": ["task-04", "task-05", "task-06"]
+    },
+    {
+      "id": "task-10",
+      "title": "CI/CD (GitHub Actions) — build/test/scan/publish/deploy to staging",
+      "type": "cicd",
+      "skill": "builtin:cicd-pipeline",
+      "target": {
+        "registry": "Azure Container Registry",
+        "deploy_target": "Azure Container Apps / App Service Container"
+      },
+      "estimatedDays": 3,
+      "successCriteria": "Pipeline builds image, runs tests and deploys to staging",
+      "status": "pending",
+      "dependsOn": ["task-02", "task-09"]
+    },
+    {
+      "id": "task-11",
+      "title": "Observability & logging (App Insights)",
+      "type": "observability",
+      "skill": "builtin:observability-setup",
+      "target": {
+        "app_insights": true,
+        "health_checks": true
+      },
+      "estimatedDays": 1,
+      "successCriteria": "Metrics, traces and alerts configured for staging",
+      "status": "pending",
+      "dependsOn": ["task-09", "task-10"]
+    },
+    {
+      "id": "task-12",
+      "title": "Staging validation & smoke tests",
+      "type": "validation",
+      "skill": "builtin:smoke-tests",
+      "target": {},
+      "estimatedDays": 2,
+      "successCriteria": "Smoke and integration tests pass in staging",
+      "status": "pending",
+      "dependsOn": ["task-08", "task-10", "task-11"]
+    },
+    {
+      "id": "task-13",
+      "title": "Production rollout & runbook",
+      "type": "release",
+      "skill": "builtin:release",
+      "target": {},
+      "estimatedDays": 1,
+      "successCriteria": "Production deploy completed per runbook with rollback verified",
+      "status": "pending",
+      "dependsOn": ["task-12"]
+    }
+  ],
+  "metadata": {
+    "language": "java",
+    "planName": "exampleSpringboot320M3-modernization-plan",
+    "projectName": "exampleSpringboot320M3",
+    "createdAt": "2026-05-19T23:28:00Z",
+    "version": "1.0"
+  }
+}
