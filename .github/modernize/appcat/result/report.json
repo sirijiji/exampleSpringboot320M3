@@ -2,8 +2,8 @@
   "version": "1.0.0",
   "producer": "Java AppCAT CLI",
   "metadata": {
-    "analysisStartTime": "2026-05-19T21:37:56.4988396Z",
-    "analysisEndTime": "2026-05-19T21:40:22.8280754Z",
+    "analysisStartTime": "2026-05-20T21:04:03.9899898Z",
+    "analysisEndTime": "2026-05-20T21:05:58.3203303Z",
     "status": "Complete",
     "privacyMode": "Protected",
     "privacyModeHelpUrl": "https://aka.ms/appcat-privacy-mode",
@@ -23,13 +23,13 @@
   "summary": {
     "totalProjects": 1,
     "totalIssues": 5,
-    "totalIncidents": 10,
-    "totalEffort": 39,
+    "totalIncidents": 8,
+    "totalEffort": 33,
     "charts": {
       "severity": {
         "mandatory": 4,
         "optional": 0,
-        "potential": 6,
+        "potential": 4,
         "information": 0
       },
       "category": {
@@ -37,7 +37,7 @@
         "database-migration": 2,
         "hardcoded-credential": 2,
         "java-version-upgrade": 1,
-        "local-credential": 4
+        "local-credential": 2
       }
     }
   },
@@ -45,7 +45,7 @@
     {
       "path": ".",
       "issues": 5,
-      "storyPoints": 39,
+      "storyPoints": 33,
       "properties": {
         "appName": "exampleSpringboot320M3",
         "jdkVersion": "25",
@@ -63,7 +63,7 @@
       "incidents": [
         {
           "ruleId": "azure-java-version-01000",
-          "incidentId": "20d3f93b-88cf-4962-a975-ec16e22eb49c",
+          "incidentId": "1384bc15-a4b9-438e-8045-39834be204c3",
           "location": "build.gradle",
           "locationKind": "File",
           "line": 12,
@@ -89,7 +89,7 @@
         },
         {
           "ruleId": "azure-database-postgresql-02000",
-          "incidentId": "ed89e569-2a6c-40c2-8b7a-0b8081dc9d5a",
+          "incidentId": "95f7d094-da64-4627-bbef-620f7facaf9c",
           "location": "build.gradle",
           "locationKind": "File",
           "line": 41,
@@ -115,7 +115,7 @@
         },
         {
           "ruleId": "azure-database-postgresql-02000",
-          "incidentId": "3a9a012e-afa5-40e1-b09d-1606ed16fb1c",
+          "incidentId": "864d3690-46c5-4a55-ba48-912a37ac4e71",
           "location": "",
           "locationKind": "",
           "targets": {
@@ -139,7 +139,7 @@
         },
         {
           "ruleId": "azure-password-01000",
-          "incidentId": "b6fde5c1-e5d0-4c7d-a368-949c53937bd3",
+          "incidentId": "f06fc1b2-7a08-459c-bbc3-cebb11907d97",
           "location": "src/test/resources/application.properties",
           "locationKind": "File",
           "line": 5,
@@ -165,33 +165,7 @@
         },
         {
           "ruleId": "azure-password-01000",
-          "incidentId": "6723d963-67ff-49fb-b5ae-00323034df02",
-          "location": "build/resources/main/application.properties",
-          "locationKind": "File",
-          "line": 12,
-          "column": 0,
-          "targets": {
-            "azure-aks": {
-              "effort": 3,
-              "severity": "potential"
-            },
-            "azure-appservice": {
-              "effort": 3,
-              "severity": "potential"
-            },
-            "azure-container-apps": {
-              "effort": 3,
-              "severity": "potential"
-            }
-          },
-          "labels": [
-            "type=violation",
-            "ruleset=azure/springboot"
-          ]
-        },
-        {
-          "ruleId": "azure-password-01000",
-          "incidentId": "8ec2f800-afba-4994-ba4a-13f9beb8e420",
+          "incidentId": "642162b7-ad73-4bc6-8178-801d7a658677",
           "location": "src/main/resources/application.properties",
           "locationKind": "File",
           "line": 12,
@@ -216,34 +190,8 @@
           ]
         },
         {
-          "ruleId": "azure-password-01000",
-          "incidentId": "11659834-2333-478a-af78-a1b8fbc6b6e3",
-          "location": "build/resources/test/application.properties",
-          "locationKind": "File",
-          "line": 5,
-          "column": 0,
-          "targets": {
-            "azure-aks": {
-              "effort": 3,
-              "severity": "potential"
-            },
-            "azure-appservice": {
-              "effort": 3,
-              "severity": "potential"
-            },
-            "azure-container-apps": {
-              "effort": 3,
-              "severity": "potential"
-            }
-          },
-          "labels": [
-            "type=violation",
-            "ruleset=azure/springboot"
-          ]
-        },
-        {
           "ruleId": "dockerfile-00000",
-          "incidentId": "3a39fe03-dfaf-49a4-a800-5acb794e4ca9",
+          "incidentId": "3245c5c8-db73-42cb-b9de-d81f23610098",
           "location": "",
           "locationKind": "",
           "targets": {
@@ -263,7 +211,7 @@
         },
         {
           "ruleId": "cra-hardcoded-credential-default-pwd-04000",
-          "incidentId": "647ebada-2e9b-4eb7-9b6c-28c4861817e2",
+          "incidentId": "2f2483f0-4e3c-4190-9e88-103555f0afb8",
           "location": "build/resources/test/application.properties",
           "locationKind": "File",
           "line": 5,
@@ -289,7 +237,7 @@
         },
         {
           "ruleId": "cra-hardcoded-credential-default-pwd-04000",
-          "incidentId": "6a9b1b25-bcd1-4417-8696-9db5b6ef40cd",
+          "incidentId": "6bfe162b-5746-464c-b928-ca3f8c3fd3fc",
           "location": "src/test/resources/application.properties",
           "locationKind": "File",
           "line": 5,

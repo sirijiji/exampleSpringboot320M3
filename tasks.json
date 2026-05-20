@@ -1,0 +1,56 @@
+[
+  {
+    "id": "T1",
+    "title": "Update build.gradle for Java 25 & Spring Boot 4.0.x",
+    "description": "Update Java version, Spring Boot plugin, and dependencies in build.gradle to target Java 25 and Spring Boot 4.0.x.",
+    "estimate_hours": 1.0,
+    "risk_level": "medium",
+    "preconditions": ["Current build passes", "No uncommitted changes"],
+    "acceptance_criteria": ["build.gradle reflects Java 21 and Spring Boot 3.2.x", "Build succeeds"]
+  },
+  {
+    "id": "T2",
+    "title": "Update settings.gradle and gradle.properties",
+    "description": "Ensure plugin repositories and JVM/toolchain settings are compatible with Java 25.",
+    "estimate_hours": 0.5,
+    "risk_level": "low",
+    "preconditions": ["build.gradle updated"],
+    "acceptance_criteria": ["settings.gradle and gradle.properties (if present) are updated"]
+  },
+  {
+    "id": "T3",
+    "title": "Update CI workflow to use Java 25",
+    "description": "Modify .github/workflows/build.yml to use Java 25 for builds and tests.",
+    "estimate_hours": 0.5,
+    "risk_level": "low",
+    "preconditions": ["build.gradle updated"],
+    "acceptance_criteria": ["CI uses Java 21", "CI build passes"]
+  },
+  {
+    "id": "T4",
+    "title": "Update application.properties for compatibility",
+    "description": "Review and update src/main/resources/application.properties for any breaking property changes.",
+    "estimate_hours": 0.5,
+    "risk_level": "medium",
+    "preconditions": ["build.gradle updated"],
+    "acceptance_criteria": ["application.properties compatible with Spring Boot 4.0.x"]
+  },
+  {
+    "id": "T5",
+    "title": "Refactor code for Spring Boot 3.x breaking changes",
+    "description": "Update code to address removed/deprecated APIs, migrate javax.* to jakarta.*, and resolve other breaking changes.",
+    "estimate_hours": 2.0,
+    "risk_level": "high",
+    "preconditions": ["Dependencies updated", "Build passes with new versions"],
+    "acceptance_criteria": ["No deprecated/removed API usage", "App runs as expected"]
+  },
+  {
+    "id": "T6",
+    "title": "Test and validate upgrade",
+    "description": "Run all tests and validate application functionality locally and in CI.",
+    "estimate_hours": 1.0,
+    "risk_level": "medium",
+    "preconditions": ["All code and config changes complete"],
+    "acceptance_criteria": ["All tests pass", "App runs as expected"]
+  }
+]
